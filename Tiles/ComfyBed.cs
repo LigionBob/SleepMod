@@ -9,6 +9,7 @@ namespace SleepMod.Tiles
 {
 	public class ComfyBed : ModTile
 	{
+		private SleepModConfig _config = new SleepModConfig();
 		public override void SetDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
@@ -58,25 +59,28 @@ namespace SleepMod.Tiles
 			{
 				player.RemoveSpawn();
 				Main.NewText("Spawn point removed!", 255, 240, 20, false);
-				if (!Main.dayTime)
-				{
-					Main.dayTime = true;
-					Main.time = 0;
-				}
-				else
-				{
-					Main.dayTime = false;
-					Main.time = 0;
-				}
 			}
 			else if (Player.CheckSpawn(spawnX, spawnY))
 			{
 				player.ChangeSpawn(spawnX, spawnY);
 				Main.NewText("Spawn point set!", 255, 240, 20, false);
+			}
+
+			if (Player.CheckSpawn(spawnX, spawnY))
+			{
 				if (!Main.dayTime)
 				{
 					Main.dayTime = true;
 					Main.time = 0;
+				}
+				else if(_config.SleepThroughDay)
+				{
+					Main.dayTime = false;
+					Main.time = 0;
+					if (Main.raining && _config.SleepThroughRain)
+					{
+						Main.raining = false;
+					}
 				}
 			}
 			return true;

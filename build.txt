@@ -1,4 +1,4 @@
 displayName = Sleep Mod
 author = LigionBob
-version = 0.2
-Homepage = 
+version = 1.2.1.1
+homepage = https://github.com/LigionBob/SleepMod/tree/master

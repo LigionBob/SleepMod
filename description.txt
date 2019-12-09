@@ -1,1 +1,4 @@
 This mod is a simple mod to add a bed that you can sleep in.
+
+1.2.1.1 = Sleeping at night now stops rain, added config
+1.1.x = First Releases
